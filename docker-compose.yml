@@ -1,0 +1,32 @@
+version: "3.9"
+services:
+  db_fi:
+    image: "postgres:latest"
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: uaslp_fi
+    volumes:
+       - ./data_fi:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  db_fca:
+    image: "postgres:latest"
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: uaslp_fca
+    volumes:
+       - ./data_fca:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+  db_fcsh:
+    image: "postgres:latest"
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: uaslp_fcsh
+    volumes:
+       - ./data_fcsh:/var/lib/postgresql/data
+    ports:
+      - "5434:5432"

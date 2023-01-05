@@ -1,5 +1,25 @@
 version: "3.9"
 services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+  api_gateway:
+    build: ./api_gateway
+    ports:
+      - "3001:3000"
+  api_fi:
+    build: ./api_fi
+    ports:
+      - "3002:3000"
+  api_fca:
+    build: ./api_fca
+    ports:
+      - "3003:3000"
+  api_fcsh:
+    build: ./api_fcsh
+    ports:
+      - "3004:3000"
   db_fi:
     image: "postgres:latest"
     restart: always
@@ -30,3 +50,13 @@ services:
        - ./data_fcsh:/var/lib/postgresql/data
     ports:
       - "5434:5432"
+  db_localization:
+    image: "postgres:latest"
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: uaslp_localization
+    volumes:
+       - ./data_localization:/var/lib/postgresql/data
+    ports:
+      - "5435:5432"

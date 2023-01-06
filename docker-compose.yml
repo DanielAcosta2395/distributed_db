@@ -8,22 +8,31 @@ services:
     build: ./api_gateway
     ports:
       - "3001:3000"
+    links:
+      - "db_localization:database"
   api_fi:
     build: ./api_fi
     ports:
       - "3002:3000"
+    links:
+      - "db_fi:database"
   api_fca:
     build: ./api_fca
     ports:
       - "3003:3000"
+    links:
+      - "db_fca:database"
   api_fcsh:
     build: ./api_fcsh
     ports:
       - "3004:3000"
+    links:
+      - "db_fcsh:database"
   db_fi:
     image: "postgres:latest"
     restart: always
     environment:
+      POSTGRES_USER: uaslp_fi
       POSTGRES_PASSWORD: admin
       POSTGRES_DB: uaslp_fi
     volumes:
@@ -34,6 +43,7 @@ services:
     image: "postgres:latest"
     restart: always
     environment:
+      POSTGRES_USER: uaslp_fca
       POSTGRES_PASSWORD: admin
       POSTGRES_DB: uaslp_fca
     volumes:
@@ -44,6 +54,7 @@ services:
     image: "postgres:latest"
     restart: always
     environment:
+      POSTGRES_USER: uaslp_fcsh
       POSTGRES_PASSWORD: admin
       POSTGRES_DB: uaslp_fcsh
     volumes:
@@ -54,6 +65,7 @@ services:
     image: "postgres:latest"
     restart: always
     environment:
+      POSTGRES_USER: uaslp_localization
       POSTGRES_PASSWORD: admin
       POSTGRES_DB: uaslp_localization
     volumes:

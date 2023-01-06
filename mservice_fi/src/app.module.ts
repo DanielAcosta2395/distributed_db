@@ -12,6 +12,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: 'uaslp_fi',
       password: 'admin',
       database: 'uaslp_fi',
+      schema: 'uaslp_fi',
       entities: [],
     }),
   ],

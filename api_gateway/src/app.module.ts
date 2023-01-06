@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ClientsModule, Transport } from '@nestjs/microservices';
+import { AppService } from './app.service';
 
 @Module({
   imports: [
@@ -14,6 +15,16 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       database: 'uaslp_localization',
       entities: [],
     }),
+    ClientsModule.register([
+      {
+        name: 'MSERVICE_FI',
+        transport: Transport.TCP,
+        options: {
+          host: 'MSERVICE_FI',
+          port: 8888,
+        },
+      },
+    ]),
   ],
   controllers: [AppController],
   providers: [AppService],

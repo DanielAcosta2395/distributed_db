@@ -17,10 +17,10 @@ import { AppService } from './app.service';
     }),
     ClientsModule.register([
       {
-        name: 'MSERVICE_FI',
+        name: 'mservice_fi',
         transport: Transport.TCP,
         options: {
-          host: 'MSERVICE_FI',
+          host: 'mservice_fi',
           port: 8888,
         },
       },

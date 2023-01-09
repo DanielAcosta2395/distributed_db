@@ -10,19 +10,22 @@ services:
       - "3001:3000"
     links:
       - "db_localization:database"
-      - "mservice_fi:MSERVICE_FI"
+      - "mservice_fi:mservice_fi"
   mservice_fi:
     build: ./mservice_fi
     links:
       - "db_fi:database"
-  api_fca:
-    build: ./api_fca
+      - "mservice_fi:mservice_fi"
+    ports:
+    - "8888:8888"
+  mservice_fca:
+    build: ./mservice_fca
     ports:
       - "3003:8888"
     links:
       - "db_fca:database"
-  api_fcsh:
-    build: ./api_fcsh
+  mservice_fcsh:
+    build: ./mservice_fcsh
     ports:
       - "3004:8888"
     links:
